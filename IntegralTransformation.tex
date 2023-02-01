@@ -1,0 +1,598 @@
+\documentclass[12pt, a4paper, twoside]{ctexbook}
+\usepackage{amsmath, amsthm, amssymb, bm, graphicx, hyperref, mathrsfs, geometry, booktabs, makecell}
+\hypersetup{colorlinks=true, linkcolor=black}
+\geometry{left=2.0cm, top=2.0cm, bottom=2.0cm, right=2.0cm}
+
+\title{{\Huge{\textbf{积分变换笔记}}}}
+\author{南京工程学院\\Serein}
+\date{\today}
+\linespread{1.5}
+\newtheorem{theorem}{定理}[section]
+\newtheorem{definition}[theorem]{定义}
+\newtheorem{lemma}[theorem]{引理}
+\newtheorem{corollary}[theorem]{推论}
+\newtheorem{example}[theorem]{例}
+\newtheorem{proposition}[theorem]{命题}
+% \everymath{\displaystyle} 
+\begin{document}
+
+\maketitle
+
+\pagenumbering{roman}
+\setcounter{page}{1}
+
+\newpage
+\pagenumbering{Roman}
+\setcounter{page}{1}
+\tableofcontents
+\newpage
+\setcounter{page}{1}
+\pagenumbering{arabic}
+
+\chapter{Fourier变换}
+\newpage
+
+\section{Fourier积分公式}
+
+\textbf{Fourier积分公式}\\
+当在$t$处连续时，有
+$$
+f \left( t \right) = \frac{1}{2\pi} \int_{-\infty}^{+\infty}{ \left[ \int_{-\infty}^{+\infty}{f \left(\tau \right) \mathrm{e}^{-\mathrm{i}\omega\tau}\mathrm{d} \tau} \right] \mathrm{e}^{\mathrm{i}\omega t}\mathrm{d}\omega}
+$$
+当在$t$处间断时，有
+$$
+f \left( t \right) = \frac{f\left( t+0 \right)+f\left(t-0\right)}{2}
+$$
+注意：当在$t$处间断时，应取该点左右极限计算
+~\\
+
+\textbf{Fourier积分公式的复数形式}
+$$
+f \left( t \right) = \frac{1}{2\pi} \int_{-\infty}^{+\infty}{ \left[ \int_{-\infty}^{+\infty}{f \left(\tau \right) \mathrm{e}^{-\mathrm{i}\omega\tau}\mathrm{d} \tau} \right] \mathrm{e}^{\mathrm{i}\omega t}\mathrm{d}\omega}
+$$
+~\\
+
+\textbf{Dirichlet积分}
+$$
+\int_0^{+\infty}{\frac{\sin x}{x}\text{d}x}=\frac{\pi}{2}
+$$
+~\\
+
+\section{Fourier变换与其逆变换}
+\textbf{Fourier变换式}
+$$
+\mathscr{F}\left[ f\left( t \right) \right] =\int_{-\infty}^{+\infty}{f\left( t \right) \text{e}^{-\text{i}\omega t}\text{d}t}=F\left( \omega \right) 
+$$
+$F\left(\omega\right)$为$f\left(t\right)$的象函数
+~\\
+
+\textbf{Fourier逆变换式}
+$$
+\mathscr{F}^{-1}\left[ F\left( \omega \right) \right] =\frac{1}{2\pi}\int_{-\infty}^{+\infty}{F\left( \omega \right) \text{e}^{\text{i}\omega t}\text{d}\omega}=f\left(t\right)
+$$
+$f\left(t\right)$为$F\left(\omega\right)$的象原函数
+~\\
+
+\section{单位脉冲函数及其Fourier变换}
+\textbf{Dirac函数（$\delta$函数）}\\
+若$\delta\left(t\right)$满足
+$$
+\delta\left(t\right)=0,t\ne0
+$$
+以及
+$$
+\int_{-\infty}^{+\infty}{\delta\left(t\right)\mathrm{d} t}=1
+$$
+则$\delta\left(t\right)$为$\delta$函数
+~\\
+
+\textbf{性质}\\
+对性质良好的$f\left(t\right)$，$\delta$函数有如下性质\\
+\hspace*{4em}\textbf{性质一}
+$$
+\int_{-\infty}^{+\infty}{\delta\left(t\right)f\left(t\right)\mathrm{d}t}=f\left(0\right)
+$$
+$$
+\int_{-\infty}^{+\infty}{\delta\left(t-t_0\right)f\left(t\right)\mathrm{d}t}=f\left(t_0\right)
+$$
+\hspace*{4em}\textbf{性质二}
+$$
+\int_{-\infty}^{+\infty}{\delta '\left( t \right) f\left( t \right) \text{d}t}=-f'\left( 0 \right) 
+$$
+$$
+\int_{-\infty}^{+\infty}{\delta ^{\left(n\right)} \left( t \right) f\left( t \right) \text{d}t}=\left( -1 \right) ^nf^{\left( n \right)}\left( 0 \right) 
+$$
+\hspace*{4em}\textbf{性质三}
+$$
+\delta\left(t\right)=\delta\left(-t\right)
+$$
+\hspace*{4em}\textbf{性质四}
+$$
+\int_{-\infty}^t{\delta \left( \tau \right) \text{d}\tau}=u\left( t \right)
+$$
+$$
+u\left(t\right)=\begin{cases}
+    1,t>0\\
+    0,t<0
+\end{cases}
+$$
+$$
+\frac{\mathrm{d}u\left(t\right)}{\mathrm{d}t}=\delta \left(t\right)
+$$
+\hspace*{4em}\textbf{性质五}
+$$
+\delta \left( at \right) =\frac{1}{\left| a \right|}\delta \left( t \right) 
+$$
+$$
+\delta \left( at-b \right) =\frac{1}{\left| a \right|}\delta \left( t-\frac{b}{a} \right) 
+$$
+\newpage
+\textbf{常见函数的Fourier变换}
+\begin{table}[h]
+    \centering
+    \caption{常见函数的Fourier变换}\label{常见函数的Fourier变换}
+    \begin{tabular}{cc}
+        \toprule
+        函数 & Fourier变换 \\
+        \midrule
+        $\delta\left(t\right)$          & $1$                                                           \\
+        $\delta\left(t-t_0\right)$      & $\mathrm{e}^{-\mathrm{i}\omega t_0}$                           \\
+        $u\left(t\right)$               & $\frac{1}{\mathrm{i}\omega}+\pi \delta\left(\omega\right)$    \\
+        $\sin\left(\omega_0 t\right)$   & $\pi \mathrm{i}\left[\delta\left(\omega+\omega_0\right)-\delta\left(\omega-\omega_0\right)\right]$    \\
+        $\cos\left(\omega_0 t\right)$   & $\pi \left[\delta\left(\omega+\omega_0\right)+\delta\left(\omega-\omega_0\right)\right]$              \\
+        $1$                             & $2\pi \delta\left(\omega\right)$                                   \\
+        $\delta '\left(t\right)$        & $\mathrm{i}\omega$                                            \\
+        $\delta ^{\left(n\right)}\left(t\right)$      & $\left(\mathrm{i}\omega\right)^{n}$             \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+~\\
+
+\section{Fourier变换的性质}
+\textbf{$A$、线性性质}\\
+若$\mathscr{F}\left[f_1\left(t\right)\right]=F_1\left(\omega\right)$，$\mathscr{F}\left[f_2\left(t\right)\right]=F_2\left(\omega\right)$，则
+$$
+\mathscr{F}\left[ \alpha f_1\left( t \right) +\beta f_2\left( t \right) \right] =\alpha F_1\left( \omega \right) +\beta F_2\left( \omega \right) 
+$$
+$$
+\mathscr{F}^{-1}\left[ \alpha F_1\left( \omega \right) +\beta F_2\left( \omega \right) \right] =\alpha f_1\left( t \right) +\beta f_2\left( t \right) 
+$$
+~\\
+
+\textbf{$B$、位移性质}\\
+若$\mathscr{F}\left[f\left(t\right)\right]=F\left(\omega\right)$，则
+$$
+\mathscr{F}\left[ f\left( t + t_0 \right) \right] =\text{e}^{\text{i}\omega t_0}F\left( \omega \right) 
+$$
+$$
+\mathscr{F}\left[ \text{e}^{\text{i}\omega_0 t}f\left( t \right) \right] =F\left( \omega -\omega _0 \right)
+$$
+\newpage
+\textbf{$C$、微分性质}\\
+设$\mathscr{F}\left[f\left(t\right)\right]=F\left(\omega\right)$，若$f\left(t\right)$在$\left(-\infty,+\infty\right)$上连续或只有有限个可去间断点，且当$\left| t \right|\rightarrow +\infty $，$f \left(t\right) \rightarrow 0 $，则
+$$
+\mathscr{F}\left[ f'\left( t \right) \right] =\text{i}\omega F\left( \omega \right) 
+$$
+$$
+\mathscr{F}\left[ f^{\left( n \right)}\left( t \right) \right] =\left( \text{i}\omega \right) ^nF\left( \omega \right) 
+$$
+$$
+\mathscr{F}\left[ tf\left( t \right) \right] = \text{i}F'\left( \omega \right)
+$$
+$$
+\mathscr{F}\left[ t^nf\left( t \right) \right] = \text{i}^nF^{\left( n \right)}\left( \omega \right)
+$$
+~\\
+
+\textbf{$D$、积分性质}\\
+设$\mathscr{F}\left[f\left(t\right)\right]=F\left(\omega\right)$，\\
+当$t\to+\infty$时，$g\left(t\right)=\int_{-\infty}^{t}{f\left(t\right)\mathrm{d}t}\to0$，则
+$$
+\mathscr{F}\left[ \int_{-\infty}^t{f\left( t \right) \text{d}t} \right] =\frac{1}{\text{i}\omega}F\left( \omega \right) 
+$$
+当$\underset{t\to+\infty}{\lim}{g\left(x\right)\ne0}$时，则
+$$
+\mathscr{F}\left[ \int_{-\infty}^t{f\left( t \right) \text{d}t} \right] =\frac{1}{\text{i}\omega}F\left( \omega \right) +\pi F\left( 0 \right) \delta \left( \omega \right) 
+$$
+~\\
+
+\textbf{$E$、相似性质}\\
+设$\mathscr{F}\left[f\left(t\right)\right]=F\left(\omega\right)$，且$a\ne0$，则
+$$
+\mathscr{F}\left[ f\left( at \right) \right] =\frac{1}{\left| a \right|}F\left( \frac{\omega}{a} \right) 
+$$
+~\\
+
+\textbf{补充}\\
+在求Fourier变换时，我们或许会遇到被变换式中有$\sin {\omega_0 t}$或是$\cos {\omega_0 t}$，此时我们需要用定义展开，同时用欧拉公式表示出$\sin {\omega_0 t}$或$\cos {\omega_0 t}$，根据Euler公式，我们有
+$$
+\sin {\omega_0 t} = \frac{\mathrm{e}^{\mathrm{i}\omega_0 t}-\mathrm{e}^{-\mathrm{i}\omega_0 t}}{2\mathrm{i}}
+$$
+以及
+$$
+\cos {\omega_0 t} = \frac{\mathrm{e}^{\mathrm{i}\omega_0 t}+\mathrm{e}^{-\mathrm{i}\omega_0 t}}{2}
+$$
+\section{卷积}
+\textbf{概念}\\
+$$
+f_1\left(t\right)\ast f_2\left(t\right) = \int_{-\infty}^{\infty}{f_1\left(\tau\right)f_2\left(t-\tau\right)\mathrm{d}\tau}
+$$
+~\\
+
+\textbf{满足的运算律}\\
+\hspace*{4em}（1）交换律
+$$
+f_1\left(t\right)\ast f_2\left(t\right)=f_2\left(t\right)\ast f_1\left(t\right)
+$$
+\hspace*{4em}（2）结合律
+$$
+f_1\left(t\right)\ast \left[f_2\left(t\right)\ast f_3\left(t\right)\right] = \left[f_1\left(t\right)\ast f_2\left(t\right)\right]\ast f_3\left(t\right)
+$$
+\hspace*{4em}（3）分配律
+$$
+f_1\left(t\right)\ast \left[f_2\left(t\right)+ f_3\left(t\right)\right] = f_1\left(t\right)\ast f_2\left(t\right)+f_1\left(t\right)\ast f_3\left(t\right)
+$$
+\hspace*{4em}（4）设$\alpha$为常数，则
+$$
+\alpha\left[f_1\left(t\right) \ast f_2\left(t\right)\right] = \left[\alpha f_1\left(t\right)\right]\ast f_2\left(t\right)= f_1\left(t\right)\ast\left[\alpha f_2\left(t\right)\right]
+$$
+\hspace*{4em}（5）函数卷积的绝对值小于等于函数绝对值的卷积，即
+$$
+\left| f_1\left(t\right) \ast f_2\left(t\right) \right| \leqslant \left| f_1\left(t\right) \right| \ast \left| f_2\left(t\right) \right|
+$$
+~\\
+
+\textbf{卷积定理}\\
+设$\mathscr{F}\left[f_1\left(t\right)\right]=F_1\left(\omega\right)$，$\mathscr{F}\left[f_2\left(t\right)\right]=F_2\left(\omega\right)$，则
+$$
+\mathscr{F}\left[f_1\left(t\right)\ast f_2\left(t\right)\right] = F_1\left(\omega\right)\cdot F_2\left(\omega\right)
+$$
+$$
+\mathscr{F}^{-1}\left[ F_1\left(\omega\right)\cdot F_2\left(\omega\right) \right] = f_1\left(t\right)\ast f_2\left(t\right)
+$$
+$$
+\mathscr{F}\left[f_1\left(t\right) \cdot f_2\left(t\right)\right] = \frac{1}{2\pi} F_1\left(\omega\right)\ast F_2\left(\omega\right)
+$$
+$$
+\mathscr{F}\left[f_1\left(t\right) f_2\left(t\right) \cdots f_n\left(t\right)\right] = \frac{1}{\left(2\pi\right)^{n-1}} F_1\left(\omega\right)\ast F_2\left(\omega\right)\ast \cdots \ast F_n\left(\omega\right)
+$$
+\newpage
+\chapter{Laplace变换}
+\newpage
+\section{Laplace变换的概念}
+\textbf{定义}\\
+Laplace变换
+$$
+F\left(s\right)=\mathscr{L}\left[f\left(t\right)\right]=\int_{0}^{+\infty}{f\left(t\right)\mathrm{e}^{-st}\mathrm{d}t}
+$$
+Laplace逆变换
+$$
+f\left(t\right)=\mathscr{L}^{-1}\left[F\left(s\right)\right]
+$$
+~\\
+
+\textbf{常见函数的Laplace变换}
+\begin{table}[h]
+    \centering
+    \caption{常见函数的Laplace变换}\label{常见函数的Laplace变换}
+    \begin{tabular}{cc}
+        \toprule
+        函数 & Laplace变换 \\
+        \midrule
+        $1$                         & $\frac{1}{s}$           \\
+        $u\left(t\right)$           & $\frac{1}{s}$           \\
+        $\mathrm{e}^{kt}$           & $\frac{1}{s-k}$         \\
+        $t^m$                       & $\frac{m!}{s^{m+1}}$    \\
+        $\sin\left(kt\right)$       & $\frac{k}{s^2+k^2}$     \\
+        $\cos\left(kt\right)$       & $\frac{s}{s^2+k^2}$     \\
+        $\delta\left(t\right)$      & $1$     \\
+        $\delta^{\left(n\right)}\left(t\right)$      & $s^n$     \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+~\\
+
+\textbf{几种单位阶跃函数变形的Laplace变换}
+\begin{example}
+    $$\mathscr{L}\left[u\left(t-1\right)\right]=\mathscr{L}\left[u\left(t-1\right)u\left(t-1\right)\right]=\mathrm{e}^{-s}\mathscr{L}\left[u\left(t\right)\right]=\frac{\mathrm{e}^{-s}}{s}$$
+\end{example}
+\begin{example}
+    $$\mathscr{L}\left[u\left(1-t\right)\right]=\mathscr{L}\left[1-u\left(t-1\right)\right]=\frac{1}{s}-\frac{\mathrm{e}^{-s}}{s}$$
+\end{example}
+\begin{example}
+    $$\mathscr{L}\left[u\left(2t-2\right)\right]=\mathscr{L}\left[u\left(t-1\right)\right]=\mathscr{L}\left[u\left(t-1\right)u\left(t-1\right)\right]=\mathrm{e}^{-s}\mathscr{L}\left[u\left(t\right)\right]=\frac{\mathrm{e}^{-s}}{s}$$
+\end{example}
+\begin{example}
+    $$\mathscr{L}\left[u\left(t+1\right)\right]=\frac{1}{s}$$
+\end{example}
+
+\section{Laplace变换的性质}
+\textbf{$A$、线性性质}\\
+若$\mathscr{L}\left[f_1\left(t\right)\right]=F_1\left(s\right)$，$\mathscr{L}\left[f_2\left(t\right)\right]=F_2\left(s\right)$，则
+$$
+\mathscr{L}\left[ \alpha f_1\left( t \right) +\beta f_2\left( t \right) \right] =\alpha F_1\left( s \right) +\beta F_2\left( s \right) 
+$$
+$$
+\mathscr{L}^{-1}\left[ \alpha F_1\left( s \right) +\beta F_2\left( s \right) \right] = \alpha \mathscr{L}^{-1}\left[F_1\left(s\right)\right]+\beta\mathscr{L}\left[F_2\left(s\right)\right]
+$$
+~\\
+
+\textbf{$B$、微分性质}\\
+若$\mathscr{L}\left[f\left(t\right)\right]=F\left(s\right)$，则
+$$
+\mathscr{L}\left[f'\left(t\right)\right]=sF\left(s\right)-f\left(0\right)
+$$
+$$
+\mathscr{L}\left[f''\left(t\right)\right]=s^2F\left(s\right)-sf\left(0\right)-f'\left(0\right)
+$$
+$$
+\mathscr{L}\left[tf\left(t\right)\right]=-F'\left(s\right)
+$$
+$$
+\mathscr{L}\left[t^n f\left(t\right)\right]=\left(-1\right)^n F^{\left(n\right)}\left(s\right)
+$$
+~\\
+
+\textbf{$C$、积分性质}\\
+若$\mathscr{L}\left[f\left(t\right)\right]=F\left(s\right)$，则
+$$
+\mathscr{L}\left[ \int_{0}^t{f\left( \tau \right) \text{d}\tau} \right] =\frac{1}{s}F\left( s \right)
+$$
+$$
+\mathscr{L}\left[\frac{f\left(t\right)}{t}\right]=\int_{s}^{+\infty}{F\left(s\right)\mathrm{d}s}
+$$
+$$
+\int_{0}^{+\infty}{\frac{f\left(t\right)}{t}\mathrm{d}t}=\int_{0}^{+\infty}{F\left(s\right)\mathrm{d}s}
+$$
+~\\
+
+\textbf{$D$、位移性质}\\
+若$\mathscr{L}\left[f\left(t\right)\right]=F\left(s\right)$，则
+$$
+\mathscr{L}\left[\mathrm{e}^{at}f\left(t\right)\right]=F\left(s-a\right)
+$$
+~\\
+
+\textbf{$E$、延迟性质}\\
+若$\mathscr{L}\left[f\left(t\right)\right]=F\left(s\right)$，则对于$\forall\tau>0$，有
+$$
+\mathscr{L}\left[f\left(t-\tau\right)u\left(t-\tau\right)\right]=\mathrm{e}^{-s\tau}F\left(s\right)
+$$
+\newpage
+\textbf{Fourier与Laplace变换性质}
+\begin{table}[h]
+    \centering
+    \caption{Fourier与Laplace变换性质}\label{Fourier与Laplace变换性质}
+    \begin{tabular}{ccc}
+    \hline
+    性质 & Fourier变换 & Laplace变换 \\
+    \hline
+    微分性质 & \makecell[c]{$\mathscr{F}\left[ f'\left( t \right) \right] =\text{i}\omega F\left( \omega \right) $ \\
+    $\mathscr{F}\left[ f^{\left( n \right)}\left( t \right) \right] =\left( \text{i}\omega \right) ^nF\left( \omega \right) $\\
+    $\mathscr{F}\left[ tf\left( t \right) \right] = \text{i}F'\left( \omega \right)$\\
+    $\mathscr{F}\left[ t^nf\left( t \right) \right] = \text{i}^nF^{\left( n \right)}\left( \omega \right)$} & 
+    \makecell[c]{$\mathscr{L}\left[f'\left(t\right)\right]=sF\left(s\right)-f\left(0\right)$\\$\mathscr{L}\left[f''\left(t\right)\right]=s^2F\left(s\right)-sf\left(0\right)-f'\left(0\right)$\\$\mathscr{L}\left[tf\left(t\right)\right]=-F'\left(s\right)$ \\ 
+    $\mathscr{L}\left[t^n f\left(t\right)\right]=\left(-1\right)^n F^{\left(n\right)}\left(s\right)$} \\
+    \hline
+    积分性质 & $\mathscr{F}\left[ \int_{-\infty}^t{f\left( t \right) \text{d}t} \right] =\frac{1}{\text{i}\omega}F\left( \omega \right)$ & \makecell[c]{$\mathscr{L}\left[ \int_{0}^t{f\left( \tau \right) \text{d}\tau} \right] =\frac{1}{s}F\left( s \right)$\\$\mathscr{L}\left[\frac{f\left(t\right)}{t}\right]=\int_{s}^{+\infty}{F\left(s\right)\mathrm{d}s}$\\$\int_{0}^{+\infty}{\frac{f\left(t\right)}{t}\mathrm{d}t}=\int_{0}^{+\infty}{F\left(s\right)\mathrm{d}s}$} \\
+    \hline
+    位移性质 & \makecell[c]{$\mathscr{F}\left[ f\left( t + t_0 \right) \right] =\text{e}^{\text{i}\omega t_0}F\left( \omega \right)$\\$\mathscr{F}\left[ \text{e}^{\text{i}\omega_0 t}f\left( t \right) \right] =F\left( \omega -\omega _0 \right)$} & $
+    \mathscr{L}\left[\mathrm{e}^{at}f\left(t\right)\right]=F\left(s-a\right)
+    $  \\
+    \hline
+    \makecell[c]{Fourier变换相似性质\\Laplace变换延迟性质} & $\mathscr{F}\left[ f\left( at \right) \right] =\frac{1}{\left| a \right|}F\left( \frac{\omega}{a} \right) $ & $\mathscr{L}\left[f\left(t-\tau\right)u\left(t-\tau\right)\right]=\mathrm{e}^{-s\tau}F\left(s\right)$ \\
+    \hline
+    \end{tabular}
+\end{table}
+~\\
+
+\section{Laplace逆变换}
+\textbf{部分分式法}\\
+有些题目可将有理分式化为多个真分式之和，真分式形如
+$$
+\frac{b}{\left(x+a\right)^m}
+$$
+$$
+\frac{dx+e}{\left(ax^2+bx+c\right)^n}, a\ne0, b^2-4ac<0
+$$
+~\\
+
+\textbf{配方法}\\
+有些题目可将分母进行配方，配凑出$\sin\left(kt\right)$或者$\cos\left(kt\right)$的Laplace变换形式
+~\\
+
+\begin{example}
+    \begin{eqnarray}
+        \mathscr{L}^{-1}\left[\frac{2}{\left(s+1\right)\left(s+2\right)}\right]&=&\mathscr{L}^{-1}\left[2\cdot\left(\frac{1}{s+1}-\frac{1}{s+2}\right)\right] \nonumber      \\
+        ~&=&2\mathscr{L}^{-1}\left[\frac{1}{s+1}-\frac{1}{s+2}\right] \nonumber    \\
+        ~&=&2\left(\mathrm{e}^{-t}-\mathrm{e}^{-2t}\right) \nonumber
+    \end{eqnarray}
+\end{example}
+\begin{example}
+    $$
+    \mathscr{L}^{-1}\left[\frac{s-1}{s\left(s+1\right)\left(s+2\right)}\right]
+    $$
+    \hspace*{2em}不妨设
+    $$
+    \frac{s-1}{s\left(s+1\right)\left(s+2\right)}=\frac{a}{s}+\frac{b}{s+1}+\frac{c}{s+2}
+    $$
+    \hspace*{2em}易得
+    $$
+    s-1=a\left(s+1\right)\left(s+2\right)+bs\left(s+2\right)+cs\left(s+1\right)
+    $$
+    \hspace*{2em}因此有
+    $$
+    \frac{s-1}{s\left(s+1\right)\left(s+2\right)}=\frac{-\frac{1}{2}}{s}+\frac{2}{s+1}+\frac{-\frac{3}{2}}{s+2}
+    $$
+    \hspace*{2em}从而
+    \begin{eqnarray}
+        \mathscr{L}^{-1}\left[\frac{s-1}{s\left(s+1\right)\left(s+2\right)}\right]&=&\mathscr{L}^{-1}\left[\frac{-\frac{1}{2}}{s}+\frac{2}{s+1}+\frac{-\frac{3}{2}}{s+2}\right] \nonumber      \\
+        ~&=&-\frac{1}{2}\mathscr{L}^{-1}\left[\frac{1}{s}\right]+2\mathscr{L}^{-1}\left[\frac{1}{s+1}\right]-\frac{3}{2}\mathscr{L}^{-1}\left[\frac{1}{s+2}\right] \nonumber    \\
+        ~&=&-\frac{1}{2}+2\mathrm{e}^{-t}-\frac{3}{2}\mathrm{e}^{-2t} \nonumber
+    \end{eqnarray}
+\end{example}
+~\\
+
+\begin{example}
+    $$
+    \mathscr{L}^{-1}\left[\frac{s+2}{s\left(s+1\right)^2}\right]
+    $$
+    \hspace*{2em}不妨设
+    $$
+    \frac{s+2}{s\left(s+1\right)^2}=\frac{a}{s}+\frac{b}{s+1}+\frac{c}{\left(s+1\right)^2}
+    $$
+    \hspace*{2em}则我们有
+    $$
+    s+2=a\left(s+1\right)^2+bs\left(s+1\right)+cs
+    $$
+    \hspace*{2em}易得
+    $$
+    \frac{s+2}{s\left(s+1\right)^2}=\frac{2}{s}+\frac{-2}{s+1}+\frac{-1}{\left(s+1\right)^2}
+    $$
+    \hspace*{2em}而
+    $$
+    \frac{-1}{\left(s+1\right)^2}=\left(\frac{1}{s+1}\right)'
+    $$
+    \hspace*{2em}且
+    $$
+    \mathscr{L}\left[tf\left(t\right)\right]=-F'\left(s\right)
+    $$
+    \hspace*{2em}因此
+    $$
+    \mathscr{L}^{-1}\left[\frac{-1}{\left(s+1\right)^2}\right]=t\mathrm{e}^{-t}
+    $$
+    \hspace*{2em}从而
+    \begin{eqnarray}
+        \mathscr{L}^{-1}\left[\frac{s+2}{s\left(s+1\right)^2}\right]&=&\mathscr{L}^{-1}\left[\frac{2}{s}+\frac{-2}{s+1}+\frac{-1}{\left(s+1\right)^2}\right] \nonumber      \\
+        ~&=&2\mathscr{L}^{-1}\left[\frac{1}{s}\right]-2\mathscr{L}^{-1}\left[\frac{1}{s+1}\right]+\mathscr{L}^{-1}\left[\frac{-1}{\left(s+1\right)^2}\right] \nonumber    \\
+        ~&=&2-2\mathrm{e}^{-t}+t\mathrm{e}^{-t} \nonumber
+    \end{eqnarray}
+\end{example}
+~\\
+
+\begin{example}
+    $$
+    \mathscr{L}^{-1}\left[\frac{s}{\left(s^2+1\right)^2}\right]
+    $$
+    \hspace*{2em}注意到
+    $$
+    \left(\frac{1}{s^2+1}\right)'=-\frac{2s}{\left(s^2+1\right)^2}
+    $$
+    \hspace*{2em}从而
+    \begin{eqnarray}
+        \mathscr{L}^{-1}\left[\frac{s}{\left(s^2+1\right)^2}\right]&=&\mathscr{L}^{-1}\left[\frac{-2s}{\left(s^2+1\right)^2}\right]\times \left(-\frac{1}{2}\right) \nonumber      \\
+        ~&=&-\frac{1}{2}\mathscr{L}^{-1}\left[\left(\frac{1}{s^2+1}\right)'\right] \nonumber    \\
+        ~&=&\frac{1}{2}\mathscr{L}^{-1}\left[-\left(\frac{1}{s^2+1}\right)'\right] \nonumber    \\
+        ~&=&\frac{1}{2} t \sin{t} \nonumber
+    \end{eqnarray}
+\end{example}
+~\\
+
+\section{卷积}
+\textbf{概念}\\
+$$
+f_1\left(t\right)\ast f_2\left(t\right) = \int_{0}^{t}{f_1\left(\tau\right)f_2\left(t-\tau\right)\mathrm{d}\tau}
+$$
+~\\
+
+\textbf{满足的运算律}\\
+对于Laplace卷积，其满足的运算律与Fourier卷积满足的运算律一致
+\newpage
+\textbf{卷积定理}\\
+设$\mathscr{L}\left[f_1\left(t\right)\right]=F_1\left(s\right)$，$\mathscr{L}\left[f_2\left(t\right)\right]=F_2\left(s\right)$，则
+$$
+\mathscr{L}\left[f_1\left(t\right)\ast f_2\left(t\right)\right] = F_1\left(s\right)\cdot F_2\left(s\right)
+$$
+$$
+\mathscr{L}^{-1}\left[ F_1\left(s\right)\cdot F_2\left(s\right) \right] = f_1\left(t\right)\ast f_2\left(t\right)
+$$
+~\\
+
+\begin{example}
+    求
+    $$
+    f_1\left(t\right)=\begin{cases}
+        0,t\leqslant0\\
+        t,t>0
+    \end{cases}
+    $$
+    \hspace*{2em}与
+    $$
+    f_2\left(t\right)=\begin{cases}
+        0,t\leqslant0\\
+        \sin t,t>0
+    \end{cases}
+    $$
+    \hspace*{2em}的卷积\\
+    \hspace*{1em}\textbf{解}\\
+    \hspace*{2em}1)当$t\leqslant0$时，$f_1\left(t\right)\ast f_2\left(t\right)=0$\\
+    \hspace*{2em}2)当$t>0$时，
+    $$
+    \mathscr{L}\left[f_1\left(t\right)\ast f_2\left(t\right)\right] = \mathscr{L}\left[f_1\left(t\right)\right]\cdot\mathscr{L}\left[f_2\left(t\right)\right]
+    $$
+    \hspace*{2em}由于
+    $$
+    \mathscr{L}\left[f_1\left(t\right)\right]=\frac{1}{s^2}
+    $$
+    $$
+    \mathscr{L}\left[f_2\left(t\right)\right]=\frac{1}{s^2+1}
+    $$
+    \hspace*{2em}则
+    $$
+    \mathscr{L}\left[f_1\left(t\right)\ast f_2\left(t\right)\right]=\frac{1}{s^2}\cdot\frac{1}{s^2+1}=\frac{1}{s^2}-\frac{1}{s^2+1}
+    $$
+    \hspace*{2em}因此
+    $$
+    f_1\left(t\right)\ast f_2\left(t\right)=\mathscr{L}^{-1}\left[\frac{1}{s^2}-\frac{1}{s^2+1}\right]=t-\sin t
+    $$
+\end{example}
+~\\
+
+\section{Laplace变换的应用}
+\textbf{解线性微分方程}
+\begin{example}
+    解线性微分方程：
+    $$
+    y''+2y'-3y=\mathrm{e}^{-t}
+    $$
+    \hspace*{2em}且满足初值条件：
+    $$
+    y\left(0\right)=0,y'\left(0\right)=1
+    $$
+    \hspace*{1em}\textbf{解}\\
+    \hspace*{2em}令$y=y\left(t\right)$是该微分方程的解，且$\mathscr{L}\left[ y\left(t\right)\right]=Y\left(s\right)$\\
+    \hspace*{2em}则我们有
+    $$
+    \mathscr{L}\left[y''\left(t\right)\right]+2\mathscr{L}\left[y'\left(t\right)\right]-3\mathscr{L}\left[y\left(t\right)\right]=\mathscr{L}\left[\mathrm{e}^{-t}\right]
+    $$
+    \hspace*{2em}而又由于
+    $$
+    \mathscr{L}\left[y''\left(t\right)\right]=s^2Y\left(s\right)-sy\left(0\right)-y'\left(0\right)
+    $$
+    $$
+    \mathscr{L}\left[y'\left(t\right)\right]=sY\left(s\right)-y\left(0\right)
+    $$
+    \hspace*{2em}则
+    $$
+    s^2 Y\left(s\right)-sy\left(0\right)-y'\left(0\right)+2sY\left(s\right)-2y\left(0\right)-3Y\left(s\right)=\frac{1}{s+1}
+    $$
+    \hspace*{2em}整理得
+    $$
+    \left(s^2+2s-3\right)Y\left(s\right)=\frac{s+2}{s+1}
+    $$
+    \hspace*{2em}即
+    $$
+    Y\left(s\right)=\frac{s+2}{\left(s+1\right)\left(s-1\right)\left(s+3\right)}
+    $$
+    \hspace*{2em}而又由于
+    $$
+    \frac{s+2}{\left(s+1\right)\left(s-1\right)\left(s+3\right)}=\frac{-\frac{1}{4}}{s+1}+\frac{\frac{3}{8}}{s-1}+\frac{-\frac{1}{8}}{s+3}
+    $$
+    \hspace*{2em}则
+    \begin{eqnarray}
+        y\left(t\right)&=&\mathscr{L}^{-1}\left[\frac{-\frac{1}{4}}{s+1}+\frac{\frac{3}{8}}{s-1}+\frac{-\frac{1}{8}}{s+3}\right] \nonumber      \\
+        ~&=&-\frac{1}{4}\mathrm{e}^{-t}+\frac{3}{8}\mathrm{e}^{t}-\frac{1}{8}\mathrm{e}^{-3t} \nonumber    \\
+        ~&=&\frac{1}{8}\left(3\mathrm{e}^t-2\mathrm{e}^{-t}-\mathrm{e}^{-3t}\right) \nonumber
+    \end{eqnarray}
+\end{example}
+\end{document}
